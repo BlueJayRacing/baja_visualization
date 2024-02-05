@@ -1,7 +1,12 @@
-# Vue 3 + Vite
+# BAJA Simulation Website 
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This website is used for lvie simulation for the BAJA race car data, including its GPS, torque sensor data, speed data, and more.
 
-## Recommended IDE Setup
+## Running Locally
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+To run the app locally, follow these steps:
+
+1. Clone this repository.
+2. Open the terminal at the root of the repository.
+3. Install dependencies with `pnpm install`.
+4. Run the app with `pnpm dev`.
