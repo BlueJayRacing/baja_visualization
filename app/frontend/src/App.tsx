@@ -1,11 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { log } from "@/lib/logger";
+
+import Feed from "./components/feed";
 
 function App() {
-  log.debug("Hello, world!");
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <Button>Hello, world!</Button>
+    <div className="flex justify-center min-h-screen">
+      <Feed />
     </div>
   );
 }
