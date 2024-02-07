@@ -16,9 +16,7 @@ const Map = () => {
     );
     return;
   }
-  useEffect(() => {
-
-    const loadGoogleMapsAPI = () => {
+ const loadGoogleMapsAPI = () => {
       const script = document.createElement('script');
       script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
       script.async = true;
@@ -29,13 +27,13 @@ const Map = () => {
 
     const initMap = () => {
       map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-        center: { lat: Number(YOUR_LATITUDE), lng: Number(YOUR_LONGITUDE) },
+        center: { lat: 39.328814, lng: -76.622101},
         zoom: 8,
       });
     };
 
     loadGoogleMapsAPI();
-  }, []);
+
 
   return (
     <div className="flex flex-col w-full h-full bg-stone-400 min-h-screen md:max-w-lg">
