@@ -1,16 +1,12 @@
 
 import React, { useState, useEffect } from "react";
 
-// Constants
-const ENDPOINT = "https://api.nasa.gov/planetary/earth/imagery";
-const YOUR_LONGITUDE = "39.328814"
-const YOUR_LATITUDE = "-76.622101"
-const DATE = "2020-03-13"
-// Global variables
 let API_KEY: any;
+//AIzaSyB8RTURcR1ADEWT1thZfEt1uFUz2FUUiUs
+let map: google.maps.Map;
 const Map = () => {
-  // State to store the image URL
-  const [imageUrl, setImageUrl] = useState("");
+  const YOUR_LONGITUDE = "39.328814";
+  const YOUR_LATITUDE = "-76.622101";
   API_KEY = localStorage.getItem("map_api_key");
 
   if (!API_KEY) {
@@ -21,37 +17,30 @@ const Map = () => {
     return;
   }
   useEffect(() => {
-    // Fetch image data from NASA API
-    const fetchImageData = async () => {
-      try {
-        //`${ENDPOINT}?lon=${YOUR_LONGITUDE}&lat=${YOUR_LATITUDE}&date=${DATE}&api_key=${API_KEY}`
-        const response = await fetch(
-          `https://api.nasa.gov/planetary/earth/imagery?lon=-95.33&lat=29.78&date=2018-01-01&dim=0.15&api_key=${API_KEY}`
-        );
-        const data = await response;
-        console.log(data)
-        // Update the image URL state with the received data
-        setImageUrl(data.url);
-      } catch (error) {
-        console.error("Error fetching image data:", error);
-      }
+
+    const loadGoogleMapsAPI = () => {
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
+      script.async = true;
+      script.onload = initMap;
+      script.onerror = () => console.error('Error loading Google Maps API.');
+      document.head.appendChild(script);
     };
 
-    // Call the fetchImageData function
-    fetchImageData();
-  }, []); // Empty dependency array ensures that this effect runs only once after the component mounts
+    const initMap = () => {
+      map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+        center: { lat: Number(YOUR_LATITUDE), lng: Number(YOUR_LONGITUDE) },
+        zoom: 8,
+      });
+    };
+
+    loadGoogleMapsAPI();
+  }, []);
 
   return (
     <div className="flex flex-col w-full h-full bg-stone-400 min-h-screen md:max-w-lg">
       <h3>Map Demo</h3>
-      {/* Render the image if imageUrl is not empty */}
-      {imageUrl && (
-        <img
-          src={imageUrl}
-          alt="Map imagery from NASA"
-          className="map"
-        />
-      )}
+      <div id="map" style={{ width: "100%", height: "400px" }}></div>
     </div>
   );
 };
