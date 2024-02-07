@@ -36,9 +36,9 @@ const Map = () => {
 
 
   return (
-    <div className="flex flex-col w-full h-full bg-stone-400 min-h-screen md:max-w-lg">
+    <div className="flex flex-auto flex-col w-full h-full bg-stone-400 min-h-screen md:max-w-lg">
       <h3>Map Demo</h3>
-      <div id="map" style={{ width: "100%", height: "400px" }}></div>
+      <div id="map" style={{ width: "100%", height: "100%" }}></div>
     </div>
   );
 };
